@@ -6,7 +6,7 @@ import serial
 import sys
 import os
 
-ser = serial.Serial('/dev/rfcomm4',9600) 
+ser = serial.Serial('/dev/rfcomm0',9600) 
 
 path='/sys/class/backlight/intel_backlight/brightness' 
 
@@ -28,14 +28,14 @@ while(1):
 		if(val > 88):
 			os.system('xrandr --output eDP-1 --brightness 1.5')
 		if(int(value[1])==1):
-			os.system("amixer set 'Master' 10%+")
+			os.system("amixer set 'Master' 5%+")
 		if(int(value[1])==-1):
-			os.system("amixer set 'Master' 10%-")
+			os.system("amixer set 'Master' 5%-")
 	except KeyboardInterrupt:
 		print('Interrupted')
 		break
-	finally:
-		ser.close()
+	#finally:
+		#ser.close()
 		# Just to take care of initial garbage values
 
 		
